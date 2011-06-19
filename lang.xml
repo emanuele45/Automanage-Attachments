@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+
+	<id>emanuele:automanagement_of_attachments</id>
+	<version>0.1.9</version>
+
+	<file name="$themedir/languages/Modifications.italian.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+$txt['mod_automanage_attachments'] = 'Scegli il metodo per la gestione degli allegati';
+$txt['mod_attachments_normal'] = 'default di SMF';
+$txt['mod_attachments_auto_years'] = 'Suddividi per anno';
+$txt['mod_attachments_auto_months'] = 'Suddividi per anno e mese';
+$txt['mod_attachments_auto_days'] = 'Suddividi per anno, mese e giorno';
+$txt['mod_attachments_auto_space'] = 'Cambia directory quando piena';
+$txt['mod_use_subdirectories_for_attchments'] = 'Crea come sottodirectory all\'interno di una directory<div class="smalltext">in caso contrario le sottodirectory verranno create all\'interno della directory principale del forum</div>';
+$txt['mod_basedirectory_for_attchments'] = 'Directory principale per gli allegati';
+$txt['mod_basedirectory_for_attchments_warning'] = $txt['mod_basedirectory_for_attchments'] . '<div class="smalltext">Attenzione: il percorso fornito è errato. SMF userà l\'ultima directory utilizzata prima che questa venisse impostata</div>';
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$themedir/languages/Modifications.english.php">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+$txt['mod_automanage_attachments'] = 'Choose the method for the management of attachments';
+$txt['mod_attachments_normal'] = 'SMF default behaviour';
+$txt['mod_attachments_auto_years'] = 'Subdivide by years';
+$txt['mod_attachments_auto_months'] = 'Subdivide by years and months';
+$txt['mod_attachments_auto_days'] = 'Subdivide by years, months and days';
+$txt['mod_attachments_auto_space'] = 'Change directory when run out of space';
+$txt['mod_use_subdirectories_for_attchments'] = 'Create as sub-directories within a directory<div class="smalltext">otherwise the subdirectories will be creeated within the forum\'s main directory</div>';
+$txt['mod_basedirectory_for_attchments'] = 'Main directory for attachments';
+$txt['mod_basedirectory_for_attchments_warning'] = $txt['mod_basedirectory_for_attchments'] . '<div class="smalltext">Please note that the directory is wrong. SMF will use the last directory used before this was introduced</div>';
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$themedir/languages/Modifications.english_british.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+$txt['mod_automanage_attachments'] = 'Choose the method for the management of attachments';
+$txt['mod_attachments_normal'] = 'SMF default behaviour';
+$txt['mod_attachments_auto_years'] = 'Subdivide by years';
+$txt['mod_attachments_auto_months'] = 'Subdivide by years and months';
+$txt['mod_attachments_auto_days'] = 'Subdivide by years, months and days';
+$txt['mod_attachments_auto_space'] = 'Change directory when run out of space';
+$txt['mod_use_subdirectories_for_attchments'] = 'Create as sub-directories within a directory<div class="smalltext">otherwise the subdirectories will be creeated within the forum\'s main directory</div>';
+$txt['mod_basedirectory_for_attchments'] = 'Main directory for attachments';
+$txt['mod_basedirectory_for_attchments_warning'] = $txt['mod_basedirectory_for_attchments'] . '<div class="smalltext">Please note that the directory is wrong. SMF will use the last directory used before this was introduced</div>';
+]]></add>
+		</operation>
+	</file>
+</modification>

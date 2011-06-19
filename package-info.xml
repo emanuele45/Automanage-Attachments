@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>emanuele:automanagement_of_attachments</id>
+	<name>Automanagement of attachments</name>
+	<version>0.1.9</version>
+	<type>modification</type>
+	<install for="2.0 RC5, 2.0">
+		<modification>modification.xml</modification>
+		<modification>lang.xml</modification>
+		<modification>lang_utf8.xml</modification>
+		<require-file name="Subs-AutoManageAttachments.php" destination="$sourcedir" />
+		<code>install.php</code>
+	</install>
+	<uninstall for="2.0 RC5, 2.0">
+		<readme type="inline" parsebbc="true">Please note the the attachments directory will be reverted to the last used before the installation of this mod.</readme>
+		<modification reverse="true">modification.xml</modification>
+		<modification reverse="true">lang.xml</modification>
+		<modification reverse="true">lang_utf8.xml</modification>
+		<remove-file name="$sourcedir/Subs-AutoManageAttachments.php" />
+		<code>uninstall.php</code>
+	</uninstall>
+</package-info>

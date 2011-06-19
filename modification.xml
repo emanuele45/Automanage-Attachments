@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+
+	<id>emanuele:automanagement_of_attachments</id>
+	<version>0.1.9</version>
+
+	<file name="$sourcedir/Post.php">
+		<operation><!-- 1 -->
+			<search position="replace"><![CDATA[
+		if (empty($_SESSION['temp_attachments']))
+			$_SESSION['temp_attachments'] = array();
+
+		if (!empty($modSettings['currentAttachmentUploadDir']))
+]]></search>
+			<add><![CDATA[
+		if (empty($_SESSION['temp_attachments']))
+			$_SESSION['temp_attachments'] = array();
+
+		mod_automanage_attachments_check_directory(true);
+
+		if (!empty($modSettings['currentAttachmentUploadDir']))
+]]></add>
+		</operation>
+		<operation><!-- 2 -->
+			<search position="replace"><![CDATA[
+					if ($_FILES['attachment']['size'][$n] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024)
+						fatal_lang_error('ran_out_of_space');
+]]></search>
+			<add><![CDATA[
+					if ($_FILES['attachment']['size'][$n] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024){
+						if(mod_automanage_attachments_check_space()){
+							$current_attach_dir = $modSettings['attachmentUploadDir'][$modSettings['currentAttachmentUploadDir']];
+						} else {
+							fatal_lang_error('ran_out_of_space');
+						}
+					}
+]]></add>
+		</operation>
+		<operation><!-- 3 -->
+			<search position="replace"><![CDATA[
+		if (!$modSettings['postmod_active'] || !allowedTo('post_unapproved_attachments'))
+			isAllowedTo('post_attachment');
+
+		// Make sure we're uploading to the right place.
+]]></search>
+			<add><![CDATA[
+		if (!$modSettings['postmod_active'] || !allowedTo('post_unapproved_attachments'))
+			isAllowedTo('post_attachment');
+
+		if(mama_check_presence_of_attach())
+			mod_automanage_attachments_check_directory();
+
+		// Make sure we're uploading to the right place.
+]]></add>
+		</operation>
+		<operation><!-- 4 -->
+			<search position="after"><![CDATA[
+				$_FILES['attachment']['tmp_name'][] = $attachID;
+]]></search>
+			<add><![CDATA[
+				$current_attach_dir = mama_scan_temp_directories($attachID, $current_attach_dir, $user_info['id']);]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Subs-Post.php">
+		<operation><!-- 1 -->
+			<search position="after"><![CDATA[
+	// We need to know where this thing is going.
+]]></search>
+			<add><![CDATA[
+	if(mama_check_presence_of_attach())
+		mod_automanage_attachments_check_directory();
+]]></add>
+		</operation>
+		<operation><!-- 2 -->
+			<search position="after"><![CDATA[
+	$attachmentOptions['errors'] = array();
+]]></search>
+			<add><![CDATA[
+	$attach_dir = mama_scan_temp_directories($attachmentOptions['tmp_name'], $attach_dir, $attachmentOptions['poster']);]]></add>
+		</operation>
+		<operation><!-- 3 -->
+			<search position="replace"><![CDATA[
+		if ($attachmentOptions['size'] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024)
+			$attachmentOptions['errors'][] = 'directory_full';
+]]></search>
+			<add><![CDATA[
+		if ($attachmentOptions['size'] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024){
+			if(mod_automanage_attachments_check_space()){
+				$current_attach_dir = $modSettings['attachmentUploadDir'][$modSettings['currentAttachmentUploadDir']];
+				$id_directory = $modSettings['currentAttachmentUploadDir'];
+			} else {
+				$attachmentOptions['errors'][] = 'directory_full';
+			}
+		}
+]]></add>
+		</operation>
+		<operation><!-- 4 -->
+			<search position="replace"><![CDATA[
+			require_once($sourcedir . '/Subs-Admin.php');
+			emailAdmins('admin_attachments_full');
+			updateSettings(array('attachment_full_notified' => 1));
+]]></search>
+			<add><![CDATA[
+			if(empty($modSettings['mod_automanage_attachments'])){
+				require_once($sourcedir . '/Subs-Admin.php');
+				emailAdmins('admin_attachments_full');
+				updateSettings(array('attachment_full_notified' => 1));
+			}
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/ManageAttachments.php">
+		<operation><!-- 1 -->
+			<search position="replace"><![CDATA[
+			// Directory and size limits.
+			empty($modSettings['currentAttachmentUploadDir']) ? array('text', 'attachmentUploadDir', 40, 'invalid' => !$context['valid_upload_dir']) : array('var_message', 'attachmentUploadDir_multiple', 'message' => 'attachmentUploadDir_multiple_configure'),
+]]></search>
+			<add><![CDATA[
+			// Directory and size limits.
+			array('select', 'mod_automanage_attachments', array($txt['mod_attachments_normal'], $txt['mod_attachments_auto_years'], $txt['mod_attachments_auto_months'], $txt['mod_attachments_auto_days'], $txt['mod_attachments_auto_space'])),
+			array('check', 'mod_use_subdirectories_for_attchments'),
+			array('text', 'mod_basedirectory_for_attchments', 40, 'invalid' => !$context['mod_valid_basedirectory'], 'text_label' => ($context['mod_valid_basedirectory'] ? $txt['mod_basedirectory_for_attchments'] : $txt['mod_basedirectory_for_attchments_warning'])),
+			(empty($modSettings['currentAttachmentUploadDir']) && (empty($modSettings['mod_automanage_attachments']) || $modSettings['mod_automanage_attachments']==0)) ? array('text', 'attachmentUploadDir', 40, 'invalid' => !$context['valid_upload_dir']) : array('var_message', 'attachmentUploadDir_multiple', 'message' => 'attachmentUploadDir_multiple_configure'),
+]]></add>
+		</operation>
+	</file>
+
+</modification>
