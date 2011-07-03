@@ -5,7 +5,7 @@
 	<id>emanuele:automanagement_of_attachments</id>
 	<version>0.1.9</version>
 
-	<file name="$themedir/languages/Modifications.italian-UTF8.php" error="skip">
+	<file name="$languagedir/Modifications.italian-UTF8.php" error="skip">
 		<operation>
 			<search position="end"></search>
 			<add><![CDATA[
@@ -22,7 +22,7 @@ $txt['mod_basedirectory_for_attchments_warning'] = $txt['mod_basedirectory_for_a
 		</operation>
 	</file>
 
-	<file name="$themedir/languages/Modifications.english-UTF8.php" error="skip">
+	<file name="$languagedir/Modifications.english-UTF8.php" error="skip">
 		<operation>
 			<search position="end"></search>
 			<add><![CDATA[
@@ -39,7 +39,7 @@ $txt['mod_basedirectory_for_attchments_warning'] = $txt['mod_basedirectory_for_a
 		</operation>
 	</file>
 
-	<file name="$themedir/languages/Modifications.english_british-UTF8.php" error="skip">
+	<file name="$languagedir/Modifications.english_british-UTF8.php" error="skip">
 		<operation>
 			<search position="end"></search>
 			<add><![CDATA[
