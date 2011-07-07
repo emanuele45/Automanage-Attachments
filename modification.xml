@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 
 	<id>emanuele:automanagement_of_attachments</id>
-	<version>0.1.9</version>
+	<version>0.1.10</version>
 
 	<file name="$sourcedir/Post.php">
 		<operation><!-- 1 -->
