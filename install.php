@@ -5,7 +5,8 @@ if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
 elseif (!defined('SMF')) // If we are outside SMF and can't find SSI.php, then throw an error
 	die('<b>Error:</b> Cannot install - please verify you put this file in the same place as SMF\'s SSI.php.');
 
-if(ini_get('safe_mode')){
+if (ini_get('safe_mode'))
+{
 	echo '
 <div style="background-color:white;width:90%;margin:10px auto;">
 	<h2 style="padding-top:1em;text-align:center;font-size:2em;color:red;">Safe Mode enabled</h2>
@@ -27,9 +28,7 @@ if (!empty($modSettings['currentAttachmentUploadDir']))
 	$path = $modSettings['attachmentUploadDir'][$modSettings['currentAttachmentUploadDir']];
 }
 else
-{
 	$path = $modSettings['attachmentUploadDir'];
-}
 
 updateSettings(array('mod_pre_automanagement_attachments_updir' => $path));
 

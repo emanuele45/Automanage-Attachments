@@ -28,12 +28,12 @@
 						fatal_lang_error('ran_out_of_space');
 ]]></search>
 			<add><![CDATA[
-					if ($_FILES['attachment']['size'][$n] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024){
-						if(mod_automanage_attachments_check_space()){
+					if ($_FILES['attachment']['size'][$n] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024)
+					{
+						if (mod_automanage_attachments_check_space())
 							$current_attach_dir = $modSettings['attachmentUploadDir'][$modSettings['currentAttachmentUploadDir']];
-						} else {
+						else
 							fatal_lang_error('ran_out_of_space');
-						}
 					}
 ]]></add>
 		</operation>
@@ -69,7 +69,7 @@
 	// We need to know where this thing is going.
 ]]></search>
 			<add><![CDATA[
-	if(mama_check_presence_of_attach())
+	if (mama_check_presence_of_attach())
 		mod_automanage_attachments_check_directory();
 ]]></add>
 		</operation>
@@ -86,13 +86,15 @@
 			$attachmentOptions['errors'][] = 'directory_full';
 ]]></search>
 			<add><![CDATA[
-		if ($attachmentOptions['size'] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024){
-			if(mod_automanage_attachments_check_space()){
+		if ($attachmentOptions['size'] + $dirSize > $modSettings['attachmentDirSizeLimit'] * 1024)
+		{
+			if (mod_automanage_attachments_check_space())
+			{
 				$current_attach_dir = $modSettings['attachmentUploadDir'][$modSettings['currentAttachmentUploadDir']];
 				$id_directory = $modSettings['currentAttachmentUploadDir'];
-			} else {
-				$attachmentOptions['errors'][] = 'directory_full';
 			}
+			else
+				$attachmentOptions['errors'][] = 'directory_full';
 		}
 ]]></add>
 		</operation>
@@ -103,7 +105,8 @@
 			updateSettings(array('attachment_full_notified' => 1));
 ]]></search>
 			<add><![CDATA[
-			if(empty($modSettings['mod_automanage_attachments'])){
+			if (empty($modSettings['mod_automanage_attachments']))
+			{
 				require_once($sourcedir . '/Subs-Admin.php');
 				emailAdmins('admin_attachments_full');
 				updateSettings(array('attachment_full_notified' => 1));

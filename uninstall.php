@@ -7,33 +7,33 @@ elseif (!defined('SMF')) // If we are outside SMF and can't find SSI.php, then t
 
 global $modSettings;
 
-if(!empty($modSettings['mod_pre_automanagement_attachments_updir'])){
+if (!empty($modSettings['mod_pre_automanagement_attachments_updir']))
+{
 	if (!empty($modSettings['currentAttachmentUploadDir']))
 	{
 		if (!is_array($modSettings['attachmentUploadDir']))
 			$modSettings['attachmentUploadDir'] = @unserialize($modSettings['attachmentUploadDir']);
 
 		$key = array_search($modSettings['mod_pre_automanagement_attachments_updir'], $modSettings['attachmentUploadDir']);
-		if(is_null($key))
+		if (is_null($key))
 			$key=false; //for php < 4.2 see http://php.net/manual/en/function.array-search.php
 
-		if($key===false){
+		if ($key===false)
+		{
 			$modSettings['attachmentUploadDir'][] = $modSettings['mod_pre_automanagement_attachments_updir'];
 			$key = array_search($modSettings['mod_pre_automanagement_attachments_updir'], $modSettings['attachmentUploadDir']);
 		}
 		updateSettings(array(
-								'currentAttachmentUploadDir' => $key,
-								'attachmentUploadDir' => @serialize($modSettings['attachmentUploadDir']),
-								));
+			'currentAttachmentUploadDir' => $key,
+			'attachmentUploadDir' => @serialize($modSettings['attachmentUploadDir']),
+		));
 	}
 	else
-	{
 		updateSettings(array('attachmentUploadDir' => $modSettings['mod_pre_automanagement_attachments_updir']));
-	}
 }
 
 remove_integration_function('integrate_pre_include', '$sourcedir/Subs-AutoManageAttachments.php');
-add_integration_function('integrate_load_theme', 'mama_add_admin_javascript');
+remove_integration_function('integrate_load_theme', 'mama_add_admin_javascript');
 
 
 $mama_settings = array(

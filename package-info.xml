@@ -6,14 +6,14 @@
 	<name>Automanagement of attachments</name>
 	<version>0.1.10</version>
 	<type>modification</type>
-	<install for="2.0 RC5, 2.0">
+	<install for="2.0 RC5, 2.0 - 2.0.99">
 		<modification>modification.xml</modification>
 		<modification>lang.xml</modification>
 		<modification>lang_utf8.xml</modification>
 		<require-file name="Subs-AutoManageAttachments.php" destination="$sourcedir" />
 		<code>install.php</code>
 	</install>
-	<uninstall for="2.0 RC5, 2.0">
+	<uninstall for="2.0 RC5, 2.0 - 2.0.99">
 		<readme type="inline" parsebbc="true">Please note the the attachments directory will be reverted to the last used before the installation of this mod.</readme>
 		<modification reverse="true">modification.xml</modification>
 		<modification reverse="true">lang.xml</modification>
