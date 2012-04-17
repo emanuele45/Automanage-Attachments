@@ -4,7 +4,21 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>emanuele:automanagement_of_attachments</id>
 	<name>Automanagement of attachments</name>
-	<version>0.1.10</version>
+	<license>
+<!--
+/**
+ * Auto-Manage Attachments (AMA)
+ *
+ * @package AMA
+ * @author emanuele
+ * @copyright 2011 [SiNaN], Simple Machines
+ * @license http://www.simplemachines.org/about/smf/license.php BSD
+ *
+ * @version 0.1.11
+ */
+-->
+	</license>
+	<version>0.1.11</version>
 	<type>modification</type>
 	<install for="2.0 RC5, 2.0 - 2.0.99">
 		<modification>modification.xml</modification>

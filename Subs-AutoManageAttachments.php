@@ -1,4 +1,15 @@
 <?php
+/**
+ * Auto-Manage Attachments (AMA)
+ *
+ * @package AMA
+ * @author emanuele
+ * @copyright 2011 [SiNaN], Simple Machines
+ * @license http://www.simplemachines.org/about/smf/license.php BSD
+ *
+ * @version 0.1.11
+ */
+
 if (!defined('SMF'))
 	die('Hacking attempt...');
 
@@ -64,6 +75,7 @@ function mama_add_admin_javascript ()
 function mod_automanage_attachments_check_directory ($return=false)
 {
 	global $boarddir, $modSettings;
+
 	$year = date('Y');
 	$month = date('m');
 	$day = date('d');
@@ -174,8 +186,8 @@ function mod_automanage_attachments_create_directory ($basedirectory, $updir, $r
 	$count = count($tree);
 
 	$directory = mama_init_dir($tree, $count, $return);
-	if($directory===false)
-		return 'a';
+	if ($directory === false)
+		return false;
 
 	$directory .= DIRECTORY_SEPARATOR . array_shift($tree);
 
@@ -189,7 +201,7 @@ function mod_automanage_attachments_create_directory ($basedirectory, $updir, $r
 					//TODO Future development maybe change to a personalized error message
 					fatal_lang_error('attachments_no_write', 'critical');
 				else
-					return 'b';
+					return false;
 			}
 		}
 
@@ -203,13 +215,13 @@ function mod_automanage_attachments_create_directory ($basedirectory, $updir, $r
 			//TODO Future development maybe change to a personalized error message
 			fatal_lang_error('attachments_no_write', 'critical');
 		else
-			return 'c';
+			return false;
 	}
 
 	// Everything seems fine...let's create the .htaccess
 	$ht_created = mama_create_htaccess($basedirectory);
 	// No .htaccess in the basement? Why not in the attic then?
-	if ($ht_created===false)
+	if ($ht_created === false)
 		mama_create_htaccess($directory, false);
 
 	$sep = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? '\/' : DIRECTORY_SEPARATOR;
