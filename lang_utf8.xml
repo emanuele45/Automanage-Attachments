@@ -29,7 +29,7 @@ $txt['mod_attachments_auto_years'] = 'Suddividi per anno';
 $txt['mod_attachments_auto_months'] = 'Suddividi per anno e mese';
 $txt['mod_attachments_auto_days'] = 'Suddividi per anno, mese e giorno';
 $txt['mod_attachments_auto_space'] = 'Cambia directory quando piena';
-$txt['mod_use_subdirectories_for_attchments'] = 'Crea come sottodirectory all'interno di una directory<div class="smalltext">in caso contrario le sottodirectory verranno create all\'interno della directory principale del forum</div>';
+$txt['mod_use_subdirectories_for_attchments'] = 'Crea come sottodirectory all\'interno di una directory<div class="smalltext">in caso contrario le sottodirectory verranno create all\'interno della directory principale del forum</div>';
 $txt['mod_basedirectory_for_attchments'] = 'Directory principale per gli allegati';
 $txt['mod_basedirectory_for_attchments_warning'] = $txt['mod_basedirectory_for_attchments'] . '<div class="smalltext">Attenzione: il percorso fornito è errato. SMF userà l\'ultima directory utilizzata prima che questa venisse impostata</div>';
 ]]></add>
