@@ -139,7 +139,7 @@
 			// Directory and size limits.
 			array('select', 'mod_automanage_attachments', array($txt['mod_attachments_normal'], $txt['mod_attachments_auto_years'], $txt['mod_attachments_auto_months'], $txt['mod_attachments_auto_days'], $txt['mod_attachments_auto_space'])),
 			array('check', 'mod_use_subdirectories_for_attchments'),
-			array('text', 'mod_basedirectory_for_attchments', 40, 'invalid' => !$context['mod_valid_basedirectory'], 'text_label' => ($context['mod_valid_basedirectory'] ? $txt['mod_basedirectory_for_attchments'] : $txt['mod_basedirectory_for_attchments_warning'])),
+			array('text', 'mod_basedirectory_for_attchments', 40, 'invalid' => empty($context['mod_valid_basedirectory']), 'text_label' => (!empty($context['mod_valid_basedirectory']) ? $txt['mod_basedirectory_for_attchments'] : $txt['mod_basedirectory_for_attchments_warning'])),
 			(empty($modSettings['currentAttachmentUploadDir']) && (empty($modSettings['mod_automanage_attachments']) || $modSettings['mod_automanage_attachments']==0)) ? array('text', 'attachmentUploadDir', 40, 'invalid' => !$context['valid_upload_dir']) : array('var_message', 'attachmentUploadDir_multiple', 'message' => 'attachmentUploadDir_multiple_configure'),
 ]]></add>
 		</operation>
