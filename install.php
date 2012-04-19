@@ -7,7 +7,7 @@
  * @copyright 2012, Simple Machines
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 0.1.11
+ * @version 0.1.12
  */
 
 // If we have found SSI.php and we are outside of SMF, then we are running standalone.

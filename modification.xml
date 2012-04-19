@@ -12,12 +12,12 @@
  * @copyright 2012, Simple Machines
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 0.1.11
+ * @version 0.1.12
  */
 -->
 	</license>
 	<id>emanuele:automanagement_of_attachments</id>
-	<version>0.1.10</version>
+	<version>0.1.12</version>
 
 	<file name="$sourcedir/Post.php">
 		<operation><!-- 1 -->

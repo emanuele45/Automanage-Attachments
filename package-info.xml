@@ -14,11 +14,11 @@
  * @copyright 2012, Simple Machines
  * @license http://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 0.1.11
+ * @version 0.1.12
  */
 -->
 	</license>
-	<version>0.1.11</version>
+	<version>0.1.12</version>
 	<type>modification</type>
 	<install for="2.0 RC5, 2.0 - 2.0.99">
 		<modification>modification.xml</modification>
